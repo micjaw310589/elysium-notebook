@@ -1,19 +1,22 @@
 #ifndef ELYSIUM_NOTEBOOK_ENTRY_H
 #define ELYSIUM_NOTEBOOK_ENTRY_H
 
+#include <chrono>
 #include <string>
 #include <string_view>
-#include <ctime>
+using namespace std;
 
 class Entry {
-    std::string _body;
-    std::string _name;
-    std::time_t _datetime;
+    string _content;
+    string _title;
+    chrono::system_clock::time_point _datetime{};
 
 public:
     Entry();
-    Entry(std::string_view body, std::string_view name, std::time_t datetime);
+    Entry(string_view content, string_view title, chrono::system_clock::time_point datetime);
     ~Entry() = default;
+
+    void test_Print() const;
 };
 
 #endif //ELYSIUM_NOTEBOOK_ENTRY_H
