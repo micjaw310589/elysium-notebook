@@ -7,7 +7,11 @@ include_directories(include)
 
 set(SOURCES
     src/main.cpp
-    src/entry.cpp
+        src/Entry.cpp
+        src/Topic.cpp
+        include/Topic.h
+        include/Category.cpp
+        include/Category.h
 )
 
 add_executable(elysium_notebook ${SOURCES})
