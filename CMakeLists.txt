@@ -10,7 +10,7 @@ set(SOURCES
         src/Entry.cpp
         src/Topic.cpp
         include/Topic.h
-        include/Category.cpp
+        src/Category.cpp
         include/Category.h
 )
 
