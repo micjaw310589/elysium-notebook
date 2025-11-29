@@ -2,7 +2,7 @@
 // Created by reddiusz on 11/27/25.
 //
 
-#include "../include/Category.h"
+#include "Category.h"
 
 Category::Category()
     : _datetime(std::chrono::system_clock::now())

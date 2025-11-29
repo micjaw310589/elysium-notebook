@@ -29,9 +29,9 @@ int main() {
 
     test_topic->addTopic(related_topic1);
     test_topic->addTopic(related_topic2);
-    test_topic->addEntry(test_entry1);
-    test_topic->addEntry(test_entry2);
-    test_topic->addEntry(test_entry3);
+    test_topic->createEntry(test_entry1);
+    test_topic->createEntry(test_entry2);
+    test_topic->createEntry(test_entry3);
 
     // const auto* test_category = new Category("IMPORTANT", chrono::system_clock::now());
 

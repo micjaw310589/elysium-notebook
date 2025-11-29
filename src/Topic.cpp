@@ -2,26 +2,40 @@
 // Created by reddiusz on 11/26/25.
 //
 
-#include "../include/Topic.h"
+#include "Topic.h"
+
+int Topic::_auto_title_no = 1;
 
 Topic::Topic()
-    : _datetime(std::chrono::system_clock::now())
+    : Topic("Topic")
+{
+    _title.append(to_string(_auto_title_no));
+    _auto_title_no++;
+}
+
+Topic::Topic(const string_view title)
+    : Topic(title, string_view())
 {}
 
-Topic::Topic(const std::string_view title, const std::string_view description, const std::chrono::system_clock::time_point datetime)
+Topic::Topic(const string_view title, const string_view description)
     : _title(title)
     , _description(description)
-    , _datetime(datetime)
+    , _datetime_created(chrono::system_clock::now())
 {}
 
-void Topic::addEntry(Entry* entry)
+void Topic::createEntry()
 {
-    _entries.push_back(entry);
+    _entries.push_back(new Entry());
 }
 
 void Topic::removeEntry(Entry* entry)
 {
-    _entries.remove(entry);
+    auto it = std::find(_entries.begin(), _entries.end(), entry);
+    if (it != _entries.end())
+    {
+        delete *it;
+        _entries.erase(it);
+    }
 }
 
 void Topic::addTopic(Topic* topic)

@@ -11,43 +11,46 @@
 #include <string_view>
 #include "Entry.h"
 
+using namespace std;
+
 class Topic {
-    std::list<Entry*> _entries;
-    std::list<Topic*> _related_topics;
-    std::string _title;
-    std::string _description;
-    std::chrono::system_clock::time_point _datetime;
+    list<Entry*> _entries;
+    list<Topic*> _related_topics;
+    string _title;
+    string _description;
+    chrono::system_clock::time_point _datetime_created;
+    static int _auto_title_no;
 
 public:
     Topic();
-    Topic(std::string_view title, std::string_view description, std::chrono::system_clock::time_point datetime);
+    explicit Topic(string_view title);
+    Topic(string_view title, string_view description);
     ~Topic() = default;
 
-    void addEntry(Entry* entry);
+    void createEntry();
     void removeEntry(Entry* entry);
     void addTopic(Topic* topic);
     void removeTopic(Topic* topic);
 
-    const std::string& getName() const
+    string_view getTitle() const
     {
         return _title;
     }
 
     void test_Print() const
     {
-        std::cout << _title << " // " << _datetime << std::endl
-        << _description << std::endl
-        << "\tRelated Topics:" << std::endl;
+        cout << _title << " // " << _datetime_created << endl
+        << _description << endl
+        << "\tRelated Topics:" << endl;
 
         for (const auto& topic : _related_topics)
-            std::cout << "\t- " << topic->getName() << std::endl;
-        std::cout << std::endl;
+            cout << "\t- " << topic->getTitle() << endl;
+        cout << endl;
 
         for (const auto& entry : _entries)
             entry->test_Print();
-        std::cout << std::endl;
+        cout << endl;
     }
 };
-
 
 #endif //ELYSIUM_NOTEBOOK_TOPIC_H
